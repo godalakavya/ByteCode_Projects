@@ -5,82 +5,58 @@
 
 
 print("=== Welcome to HDFC Bank ATM ===")
-
-balance = 50000
-correct_pin = "2004"
-attempts = 0
-max_attempts = 3
-
-while attempts < max_attempts:
-    pin = input("Enter PIN: ")
-    if pin == correct_pin:
-        print("Access Granted!")
-        break
-    else:
-        attempts += 1
-        if attempts == max_attempts:
-            print("Card Blocked!")
-            exit()
-        else:
-            print(f"Wrong PIN! {max_attempts - attempts} attempts left.")
-            
-while True:
-    print("\n1. Check Balance")
-    print("2. Withdraw")
-    print("3. Deposit")
-    print("4. Change PIN")
-    print("5. Exit")
-
-    choice = input("Choose (1-5): ")
-
-    if choice == "1":
-        print(f"Your balance: ₹{balance}")
-
-    elif choice == "2":
-        amount = int(input("Enter amount to withdraw: "))
-
-        if amount <= 0:
-            print("Invalid amount!")
-        elif amount % 100 != 0:
-            print("Amount must be a multiple of 100!")
-        elif amount > balance:
-            print("Insufficient Balance!")
-        else:
-            balance -= amount
-            print(f"Please collect your cash.")
-            print(f"New balance: ₹{balance}")
-
-    elif choice == "3":
-        amount = int(input("Enter amount to deposit: "))
-        if amount <= 0:
-            print("Invalid amount!")
-        else:
-            balance += amount
-            print(f"Amount deposited successfully!")
-            print(f"New balance: ₹{balance}")
-
-    elif choice == "4":
-        old = input("Enter old PIN: ")
-        if old == correct_pin:
-            new = input("Enter new 4-digit PIN: ")
-            if len(new) == 4 and new.isdigit():
-                correct_pin = new
-                print("PIN Changed Successfully!")
-            else:
-                print("PIN must be exactly 4 digits!")
-        else:
-            print("Incorrect old PIN!")
-
-    elif choice == "5":
-        print("Thank You!")
-        break
-
-    else:
-        print("Invalid choice! Choose between 1-5.")
-
-
-# In[ ]:
-
-
-
-
+balance=50000
+correct_pin="2004"
+pin=input("enter Pin:")
+n=0
+while n<2 and pin!=correct_pin:
+    print("Wrong PIN! 2 attempts left")
+    pin=input("enter Pin:")
+    n+=1
+if pin!=correct_pin:
+    print("Card Blocked!")
+else:
+    print("Access Granted!")
+    
+    choice=0
+    while choice!=5:
+        
+        print("==Main ATM Menu ==")
+    
+        print("\n | option |what to do")
+        print("| 1 | print current balance |")
+        print("| 2 |  Withdraw Cash    |")
+        print("| 3 |  Deposit Cash   |")
+        print("| 4 |  Change PIN     |")
+        print("| 5 |   Exit          |")
+    
+        choice=int(input("enter any choice(1-5)"))
+        match(choice):
+            case 1:
+                print("current balance",balance)
+            case 2:
+                amount=int(input("enter amount to withdraw:"))
+                if amount%100==0 and amount<=balance:
+                    balance-=amount
+                    print("withdraw successful","available balance:",balance)
+                else:
+                    print("entered invalid amount  or insufficient balance")
+            case 3:
+                amount=int(input("enter amount to Deposit:"))
+                balance+=amount
+                print("deposit succesful","available balance:",balance)
+            case 4:
+                old=input("enter old Pin:")
+                if old==correct_pin:
+                    new_pin=input("enter 4-digit new pin:")
+                    if len(new_pin)==4 and new_pin.isdigit():
+                        correct_pin=int(new_pin)
+                        print("pin updated successfully")
+                    else:
+                        print("pin must be 4-digit")
+                else:
+                    print("incorrect old pin!")
+            case 5:
+                print("Thank you..!")
+            case _:
+             print("Invalid option..,try again.")
