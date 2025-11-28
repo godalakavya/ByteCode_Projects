@@ -4,7 +4,7 @@
 # In[1]:
 
 
-print("=== Welcome to HDFC Bank ATM ===")
+print("==== Welcome to HDFC Bank ATM ====")
 balance=50000
 correct_pin="2004"
 pin=input("enter Pin:")
@@ -21,7 +21,7 @@ else:
     choice=0
     while choice!=5:
         
-        print("==Main ATM Menu ==")
+        print("===Main ATM Menu ===")
     
         print("\n | option |what to do")
         print("| 1 | print current balance |")
